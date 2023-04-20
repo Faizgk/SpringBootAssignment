@@ -1,6 +1,7 @@
 package com.highpeak.spring.springboot.topics;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -17,6 +18,7 @@ public class TopicService {
             new Topic("002", "python", "python class")));   */
 
 
+        @Cacheable("topics")
         public List<Topic> getAllTopics(){
 
             List<Topic> topics = new ArrayList<>();
@@ -24,6 +26,7 @@ public class TopicService {
             topicRepository.findAll().forEach(topics::add);
             return topics;
         }
+
 
 
         public Optional<Topic> getTopic(String id){
@@ -36,7 +39,7 @@ public class TopicService {
 
                 return null;
             }   */
-           return topicRepository.findById(id);
+           return  topicRepository.findById(id);
 
 
         }

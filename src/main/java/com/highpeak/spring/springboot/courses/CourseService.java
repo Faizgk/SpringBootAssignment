@@ -1,6 +1,7 @@
 package com.highpeak.spring.springboot.courses;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.highpeak.spring.springboot.topics.Topic;
@@ -19,6 +20,7 @@ public class CourseService {
             new Topic("002", "python", "python class")));   */
 
 
+    @Cacheable("courses")
     public List<Course> getAllCourses(String topicId)
     {
         List<Course> courses=new ArrayList<>();

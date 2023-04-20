@@ -1,6 +1,7 @@
 package com.highpeak.spring.springboot.topics;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,11 +12,15 @@ public class TopicController {
 
     @Autowired
     private TopicService topicService;
+
+
+
     @RequestMapping("/topics")
     public List<Topic> getTopics() {
         return topicService.getAllTopics();
     }
 
+    @Cacheable
     @RequestMapping("/getTopic{id}")
     public Optional<Topic> getTopic(@PathVariable String id){
         return topicService.getTopic(id);

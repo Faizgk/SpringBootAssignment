@@ -2,6 +2,7 @@ package com.highpeak.spring.springboot.courses;
 
 import com.highpeak.spring.springboot.topics.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +14,12 @@ public class CourseController {
     @Autowired
     public CourseService courseService;
 
+
     @RequestMapping("/topics/{topicId}/courses")
     public List<Course> getAllCourses(@PathVariable String topicId) {
         return courseService.getAllCourses(topicId);
     }
+
 
     @RequestMapping("/topics/{topicId}/courses/{courseId}")
     public Optional<Course> getCourse(@PathVariable String courseId){
